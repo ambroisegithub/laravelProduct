@@ -1,0 +1,45 @@
+Postgresql commands
+
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+
+sudo -i -u postgres
+
+This way you are switched to postgres user. and enter your password (of the previous user)
+
+psql
+
+With psql you are ready to perform postgres commands.
+
+always use
+
+\q
+
+CREATE DATABASE exampledatabase;
+
+To see the existing databases, you can use the following SQL query:
+\l
+
+If you want more detailed information about a specific database, you can use the \c 
+
+\c your_database
+
+ create model of database 
+php artisan make:model Product --migration
+php artisan make:controller productController
+
+god-did@god-did-82TS:/etc/php/8.2/cli$ sudo nano /etc/php.ini
+god-did@god-did-82TS:/etc/php/8.2/cli$ sudo nano /php.ini
+god-did@god-did-82TS:/etc/php/8.2/cli$ ls
+conf.d  php.ini
+god-did@god-did-82TS:/etc/php/8.2/cli$ code .
+god-did@god-did-82TS:/etc/php/8.2/cli$ cd
+god-did@god-did-82TS:~$ sudo nano /etc/php/8.2/cli/php.ini
+god-did@god-did-82TS:~$ php -m | grep pdo_sqlite
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_sqlite' (tried: /usr/lib/php/20220829/pdo_sqlite (/usr/lib/php/20220829/pdo_sqlite: cannot open shared object file: No such file or directory), /usr/lib/php/20220829/pdo_sqlite.so (/usr/lib/php/20220829/pdo_sqlite.so: undefined symbol: php_pdo_unregister_driver)) in Unknown on line 0
+pdo_sqlite
+god-did@god-did-82TS:~$ php -m | grep pdo_sqlite
+pdo_sqlite
+god-did@god-did-82TS:~$ 
+
+
