@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -12,7 +14,6 @@ class ProductController extends Controller
     {
         return Product::all();
     }
-
     public function store(Request $request)
     {
         try {
@@ -20,10 +21,29 @@ class ProductController extends Controller
                 'name' => 'required',
                 'slug' => 'required',
                 'price' => 'required',
-                'discription' => 'required', // corrected the field name
+                'description' => 'required',
+                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
-            $product = Product::create($request->all());
+            $productData = $request->all();
+
+            // Handle image upload
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+
+                // Log information about the image
+                Log::info('Image details:', [
+                    'original_name' => $image->getClientOriginalName(),
+                    'extension' => $image->getClientOriginalExtension(),
+                    'size' => $image->getSize(),
+                    'mime_type' => $image->getMimeType(),
+                ]);
+
+                $imagePath = $image->store('public/products');
+                $productData['image'] = Storage::url($imagePath);
+            }
+
+            $product = Product::create($productData);
 
             return response()->json(['message' => 'Product created successfully', 'data' => $product], 201);
         } catch (ValidationException $e) {
@@ -69,7 +89,8 @@ class ProductController extends Controller
         return response()->json(['message' => 'All products deleted successfully']);
     }
 
-    public function search($name){
-        return Product::where('name','like','%'.$name.'%')->get();
+    public function search($name)
+    {
+        return Product::where('name', 'like', '%' . $name . '%')->get();
     }
 }
