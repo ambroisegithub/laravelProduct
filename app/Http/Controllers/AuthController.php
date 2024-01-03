@@ -40,32 +40,41 @@ class AuthController extends Controller
             'email' => 'required|string',
             'password' => 'required'
         ]);
-    
+
         // Find the user by email
         $user = User::where('email', $fields['email'])->first();
-    
+
         // Check if the user exists and the password is correct
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
                 'message' => 'Bad credentials'
             ], 401);
         }
-    
+
         // If the user exists and the password is correct, generate a new token
         $token = $user->createToken('myapptoken')->plainTextToken;
-    
+
         $response = [
             'user' => $user,
             'token' => $token
         ];
-    
+
         return response($response, 201);
     }
+
+
+
+    public function deleteAll()
+    {
+        User::truncate(); // Deletes all records from the products table
+        return response()->json(['message' => 'All Users deleted successfully']);
+    }
+
 
     public function logout(Request $request)
     {
         $user = $request->user();
-    
+
         // Check if the user has a valid token before revoking it
         if ($user->currentAccessToken()) {
             $user->tokens()->delete();

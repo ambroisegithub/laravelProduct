@@ -10,6 +10,7 @@ use App\Http\Controllers\AccountController;
 // user
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'Login']);
+Route::delete('/DeleteAllUsers', [AuthController::class, 'deleteAll']);
 
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
