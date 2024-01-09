@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('women_account_completions', function (Blueprint $table) {
             $table->id();
             $table->string('fullname');
             $table->string('hasbandFullname');
@@ -41,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('women_account_completions');
     }
 };

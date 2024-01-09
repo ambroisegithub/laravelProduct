@@ -9,34 +9,48 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
+
 {
     public function create(Request $request)
+
     {
         try {
             $request->validate([
                 'fullname' => 'required|string',
                 'hasbandFullname' => 'required',
                 'dateofbirth' => 'required',
+
                 'nationality' => 'required',
                 'contactnumber' => 'required',
                 'profilePicture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                
                 'address' => 'required',
                 'emergencycontactinformation' => 'required',
                 'occapation' => 'required',
+
                 'educationlevel' => 'required',
                 'previouspregnancies' => 'required',
                 'bloodtype' => 'required',
+
                 'Weight' => 'required',
                 'conceivedate' => 'required',
                 'expectedDuedatedeliverbaby' => 'required',
+
                 'preferredlanguage' => 'required',
                 'lifestyleandHabits' => 'required',
                 'continualillness' => 'required',
+                
                 'disability' => 'required',
             ]);
 
             $accountData = $request->all();
+            $requiredFields = ['fullname', 'hasbandFullname', 'dateofbirth', 'nationality', 'contactnumber', 'address', 'emergencycontactinformation', 'occapation', 'educationlevel', 'previouspregnancies', 'bloodtype', 'Weight', 'conceivedate', 'expectedDuedatedeliverbaby', 'preferredlanguage', 'lifestyleandHabits', 'continualillness', 'disability'];
 
+            foreach ($requiredFields as $field) {
+                if (!isset($accountData[$field])) {
+                    return response()->json(['message' => 'Missing required field: ' . $field], 422);
+                }
+            }
             // Handle image upload
             if ($request->hasFile('profilePicture')) {
                 $image = $request->file('profilePicture');

@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\WomenAccountCompletionController;
 
+// Routes for WomenAccountCompletionController
+Route::post('/women-account-completion', [WomenAccountCompletionController::class, 'store']);
+Route::post('/upload-image', [Controller::class, 'uploadImage']);
 // user
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'Login']);
@@ -28,14 +33,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/products', [productController::class, 'store']);
 
-
+Route::delete('/products', [ProductController::class, 'deleteAll']);
 // Protected Routes
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::patch('/products/{id}', [productController::class, 'update']);
     Route::delete('/products/{id}', [productController::class, 'destroy']);
-    Route::delete('/products', [ProductController::class, 'deleteAll']);
 });
 
 //pregnant women account completion

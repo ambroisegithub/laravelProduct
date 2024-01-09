@@ -7,13 +7,9 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
-
 class ProductController extends Controller
 {
-    public function index()
-    {
-        return Product::all();
-    }
+
     public function store(Request $request)
     {
         try {
@@ -51,6 +47,11 @@ class ProductController extends Controller
         }
     }
 
+
+    public function index()
+    {
+        return Product::all();
+    }
     public function show($id)
     {
         $product = Product::find($id);
@@ -93,4 +94,23 @@ class ProductController extends Controller
     {
         return Product::where('name', 'like', '%' . $name . '%')->get();
     }
+
+
+    public function showUploadForm()
+    {
+        return view('upload');
+    }
+
+    public function storeUploads(Request $request)
+    {
+        $response = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
+
+        dd($response);
+
+        return back()
+            ->with('success', 'File uploaded successfully');
+    }
+    
 }
+
+
