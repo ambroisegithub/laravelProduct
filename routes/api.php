@@ -11,6 +11,7 @@ use App\Http\Controllers\ClinicalDataController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\EmergencyAlertController;
+use App\Http\Controllers\nurseController;
 
 Route::post('/upload-image', [Controller::class, 'uploadImage']);
 // Routes for WomenAccountCompletionController
@@ -102,3 +103,12 @@ Route::get('/emergency-alerts/{id}', [EmergencyAlertController::class, 'getOneEm
 Route::post('/emergency-alerts', [EmergencyAlertController::class, 'createEmergencyAlert']);
 Route::put('/emergency-alerts/{id}', [EmergencyAlertController::class, 'updateEmergencyAlert']);
 Route::delete('/emergency-alerts/{id}', [EmergencyAlertController::class, 'deleteEmergencyAlert']);
+
+
+// Nurse
+
+Route::get('/nurses', [NurseController::class, 'index']);
+Route::get('/nurses/{id}', [NurseController::class, 'show']);
+Route::post('/nurses', [NurseController::class, 'store']);
+Route::put('/nurses/{id}', [NurseController::class, 'updateNurse']);
+Route::delete('/nurses/{id}', [NurseController::class, 'destroy']);
