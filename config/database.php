@@ -66,17 +66,18 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'dpg-cmegdjen7f5s73fr5ra0-a.oregon-postgres.render.com'),
+            'host' => env('DB_HOST', 'dpg-cmekd7f109ks73c7f5a0-a.oregon-postgres.render.com'),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'fetch_apiadatabase_ijbd'),
+            'database' => env('DB_DATABASE', 'fetch_apiadatabase_vok0'),
             'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', 'vV1LixZ9xGWA0OSOjAtVBd8bHKLxBspA'),
+            'password' => env('DB_PASSWORD', 'WHeqOAi3fUi5EK6KkKjtBJx9Y9IlVq2c'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => 'prefer',
         ],
+        
         
 
         'sqlsrv' => [

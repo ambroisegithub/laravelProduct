@@ -39,7 +39,6 @@ class AccountController extends Controller
                 'preferredlanguage' => 'required',
                 'lifestyleandHabits' => 'required',
                 'continualillness' => 'required',
-                
                 'disability' => 'required',
             ]);
 
@@ -145,18 +144,23 @@ class AccountController extends Controller
             'fullname' => $request->input('fullname'),
             'hasbandFullname' => $request->input('hasbandFullname'),
             'dateofbirth' => $request->input('dateofbirth'),
+
             'nationality' => $request->input('nationality'),
             'contactnumber' => $request->input('contactnumber'),
             'address' => $request->input('address'),
+
             'emergencycontactinformation' => $request->input('emergencycontactinformation'),
             'occapation' => $request->input('occapation'),
             'educationlevel' => $request->input('educationlevel'),
+
             'previouspregnancies' => $request->input('previouspregnancies'),
             'bloodtype' => $request->input('bloodtype'),
             'Weight' => $request->input('Weight'),
+
             'conceivedate' => $request->input('conceivedate'),
             'expectedDuedatedeliverbaby' => $request->input('expectedDuedatedeliverbaby'),
             'preferredlanguage' => $request->input('preferredlanguage'),
+            
             'lifestyleandHabits' => $request->input('lifestyleandHabits'),
             'continualillness' => $request->input('continualillness'),
             'disability' => $request->input('disability'),

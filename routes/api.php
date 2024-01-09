@@ -5,13 +5,14 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
-
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WomenAccountCompletionController;
+use App\Http\Controllers\ClinicalDataController;
 
+Route::post('/upload-image', [Controller::class, 'uploadImage']);
 // Routes for WomenAccountCompletionController
 Route::post('/women-account-completion', [WomenAccountCompletionController::class, 'store']);
-Route::post('/upload-image', [Controller::class, 'uploadImage']);
+
 // user
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'Login']);
@@ -45,22 +46,27 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 //pregnant women account completion
 
 // Index
-Route::get('/accounts', [AccountController::class, 'Getall']);
+Route::get('/women-account-completion', [WomenAccountCompletionController::class, 'Getall']);
 
 // Store
 // Route::post('/pregnant', [PregnantWomenAccountcompleteController::class, 'store']);
 
 // Show
-Route::get('/accounts/{id}', [AccountController::class, 'getById']);
+Route::get('/women-account-completion/{id}', [WomenAccountCompletionController::class, 'getById']);
 
 // Update
-Route::patch('/accounts/{id}', [AccountController::class, 'updateAccount']);
+Route::patch('/women-account-completion/{id}', [WomenAccountCompletionController::class, 'updateAccount']);
 
 // Destroy
-Route::delete('/accounts/{id}', [AccountController::class, 'destroyAccount']);
+Route::delete('/women-account-completion/{id}', [WomenAccountCompletionController::class, 'destroyAccount']);
 
 // Delete All
-Route::delete('/accounts', [AccountController::class, 'deleteAll']);
+Route::delete('/women-account-completion', [WomenAccountCompletionController::class, 'deleteAll']);
 
 // Search
 Route::get('/accounts/search/{fullname}', [AccountController::class, 'search']);
+
+
+// Clinic Data
+
+Route::post('/clinic-data', [ClinicalDataController::class, 'ClinicalData']);
