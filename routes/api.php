@@ -9,8 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\WomenAccountCompletionController;
 use App\Http\Controllers\ClinicalDataController;
 use App\Http\Controllers\AppointmentController;
-
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\EmergencyAlertController;
 
 Route::post('/upload-image', [Controller::class, 'uploadImage']);
 // Routes for WomenAccountCompletionController
@@ -93,3 +93,12 @@ Route::get('/feedback', [FeedbackController::class, 'getAllFeedback']);
 Route::get('/feedback/{id}', [FeedbackController::class, 'getOneFeedback']);
 Route::put('/feedback/{id}', [FeedbackController::class, 'updateFeedback']);
 Route::delete('/feedback/{id}', [FeedbackController::class, 'deleteFeedback']);
+
+
+// EmergencyAlert
+
+Route::get('/emergency-alerts', [EmergencyAlertController::class, 'getAllEmergencyAlerts']);
+Route::get('/emergency-alerts/{id}', [EmergencyAlertController::class, 'getOneEmergencyAlert']);
+Route::post('/emergency-alerts', [EmergencyAlertController::class, 'createEmergencyAlert']);
+Route::put('/emergency-alerts/{id}', [EmergencyAlertController::class, 'updateEmergencyAlert']);
+Route::delete('/emergency-alerts/{id}', [EmergencyAlertController::class, 'deleteEmergencyAlert']);
