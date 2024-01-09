@@ -8,6 +8,9 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WomenAccountCompletionController;
 use App\Http\Controllers\ClinicalDataController;
+use App\Http\Controllers\AppointmentController;
+
+use App\Http\Controllers\FeedbackController;
 
 Route::post('/upload-image', [Controller::class, 'uploadImage']);
 // Routes for WomenAccountCompletionController
@@ -68,5 +71,25 @@ Route::get('/accounts/search/{fullname}', [AccountController::class, 'search']);
 
 
 // Clinic Data
-
 Route::post('/clinic-data', [ClinicalDataController::class, 'ClinicalData']);
+Route::get('/clinic-data', [ClinicalDataController::class, 'getAllClinicalData']);
+Route::get('/clinic-data/{id}', [ClinicalDataController::class, 'getOneClinicalData']);
+Route::delete('/clinic-data/{id}', [ClinicalDataController::class, 'deleteClinicalData']);
+Route::put('/clinic-data/{id}', [ClinicalDataController::class, 'updateClinicalData']);
+
+// Appointment
+Route::post('/appointment', [AppointmentController::class, 'Appointment']);
+Route::get('/appointments', [AppointmentController::class, 'getAllAppointments']);
+Route::get('/appointments/{id}', [AppointmentController::class, 'getOneAppointment']);
+Route::put('/appointments/{id}', [AppointmentController::class, 'updateAppointment']);
+Route::delete('/appointments/{id}', [AppointmentController::class, 'deleteAppointment']);
+
+
+// Feedback
+
+
+Route::post('/feedback', [FeedbackController::class, 'postFeedback']);
+Route::get('/feedback', [FeedbackController::class, 'getAllFeedback']);
+Route::get('/feedback/{id}', [FeedbackController::class, 'getOneFeedback']);
+Route::put('/feedback/{id}', [FeedbackController::class, 'updateFeedback']);
+Route::delete('/feedback/{id}', [FeedbackController::class, 'deleteFeedback']);
