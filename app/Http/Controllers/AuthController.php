@@ -62,15 +62,52 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
+    public function destroyAccount($id)
+    {
 
+        $account = User::find($id);
+
+        if ($account) {
+            User::destroy($id);
+            return response()->json([
+                'message' => "The account was deleted succussful", 'data' => $account,
+            ]);
+        } else {
+            return response()->json([
+                'message' => "No account Fount"
+            ], 401);
+        }
+    }
 
     public function deleteAll()
     {
         User::truncate(); // Deletes all records from the products table
         return response()->json(['message' => 'All Users deleted successfully']);
     }
+    public function Getall()
+    {
+        return User::all();
+    }
 
 
+    public function updateUser(Request $request, $id)
+    {
+        $User = User::find($id);
+
+        if (!$User) {
+            return response(['message' => 'User not found'], 404);
+        }
+
+        $fields = $request->validate([
+
+            'name' => 'required|string',
+            'email' => 'required|string',
+        ]);
+
+        $User->update($fields);
+
+        return response(['User' => $User], 200);
+    }
     public function logout(Request $request)
     {
         $user = $request->user();

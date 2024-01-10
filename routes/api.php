@@ -19,9 +19,11 @@ Route::post('/women-account-completion', [WomenAccountCompletionController::clas
 
 // user
 Route::post('/register', [AuthController::class, 'register']);
+Route::get('/GetallUsers', [AuthController::class, 'Getall']);
 Route::post('/login', [AuthController::class, 'Login']);
+Route::delete('/delete-Account/{id}', [AuthController::class, 'destroyAccount']);
+Route::put('/update-Account/{id}', [AuthController::class, 'updateUser']);
 Route::delete('/DeleteAllUsers', [AuthController::class, 'deleteAll']);
-
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 // Update the namespace here as well
