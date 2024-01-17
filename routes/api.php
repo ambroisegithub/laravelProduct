@@ -16,6 +16,7 @@ use App\Http\Controllers\nurseController;
 Route::post('/upload-image', [Controller::class, 'uploadImage']);
 // Routes for WomenAccountCompletionController
 Route::post('/women-account-completion', [WomenAccountCompletionController::class, 'store']);
+Route::get('/women-account-completion', [WomenAccountCompletionController::class, 'Getall']);
 
 // user
 Route::post('/register', [AuthController::class, 'register']);
